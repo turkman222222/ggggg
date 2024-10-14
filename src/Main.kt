@@ -45,7 +45,7 @@ fun determineWinner(userChoice: Int, computerChoice: Int): Boolean {
             false
         }
         else -> {
-            println("Компьютер победил!")
+            println("Компь     ютер победил!")
             false
         }
     }
