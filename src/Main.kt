@@ -2,24 +2,24 @@ import kotlin.random.Random
 
 fun main() {
     val options = listOf("Камень", "Ножницы", "Бумага")
-    var isGameRunning = true;
-    while (isGameRunning) {
-        val userChoice = getUserChoice(options)
-        val computerChoice = getComputerChoice(options)
+    var start = true;
+    while (start) {
+        val a = geta(options)
+        val b = getb(options)
 
-        println("Компьютер выбрал: ${options[computerChoice]}")
-        println("Вы выбрали: ${options[userChoice]}")
+        println("Компьютер выбрал: ${options[b]}")
+        println("Вы выбрали: ${options[a]}")
 
-        isGameRunning = determineWinner(userChoice, computerChoice)
+        start = Winner(a, b)
     }
 }
 
-fun getUserChoice(options: List<String>): Int{
+fun geta(options: List<String>): Int{
     while (true) {
         println("Выберите: 1 - Камень, 2 - Ножницы, 3 - Бумага")
-        val userInput = readLine()
+        val c = readLine()
 
-        when (userInput) {
+        when (c) {
             "1" -> return 0
             "2" -> return 1
             "3" -> return 2
@@ -28,19 +28,19 @@ fun getUserChoice(options: List<String>): Int{
     }
 }
 
-fun getComputerChoice(options: List<String>): Int {
+fun getb(options: List<String>): Int {
     return Random.nextInt(0, options.size)
 }
 
-fun determineWinner(userChoice: Int, computerChoice: Int): Boolean {
+fun Winner(a: Int, b: Int): Boolean {
     return when {
-        userChoice == computerChoice -> {
+        a == b -> {
             println("Ничья! Переиграем.")
             true
         }
-        (userChoice == 0 && computerChoice == 1) ||
-                (userChoice == 1 && computerChoice == 2) ||
-                (userChoice == 2 && computerChoice == 0) -> {
+        (a == 0 && b == 1) ||
+                (a == 1 && b == 2) ||
+                (a == 2 && b == 0) -> {
             println("Вы победили!")
             false
         }
